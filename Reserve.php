@@ -23,12 +23,7 @@
     </div>
   </header>
   <main role="main" class="inner cover">
-    <h1 class="cover-heading">Fake Restraunt</h1>
-    <p class="lead">This is a Sample site for Restraunts</p>
-    <p class="lead">This Restraunts hours are 7:00 AM  to 9:00 PM</p>
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-secondary">Menu</a>
-    </p>
+    
   </main>
 
   <footer class="mastfoot mt-auto">
