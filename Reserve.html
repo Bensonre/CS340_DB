@@ -15,12 +15,18 @@
         <div class="inner">
           <nav class="nav nav-masthead text-right bg-dark text-white">
             <h3 class="masthead-brand text-left">Sample Restraunt</h3>
-            <a href="#" class="nav-item active">
-              <span class="nav-link active text-white" href="#">Home</span>
+            <a class="nav-item" href="Home.php">
+              <span class="nav-link active text-muted" >Home</span>
             </a>
-            <a class="nav-link text-muted" href="#">Menu</a>
-            <a class="nav-link text-muted" href="#">Reserves</a>
-            <a class="nav-link text-muted" href="#">Reviews</a>
+            <a class="nav-item active" href="menu.html">
+                <span class="nav-link text-muted">Menu</span>
+              </a>
+              <a class="nav-item active" href="Reserve.php">
+                  <span class="nav-link text-white">Reserves</span>
+              </a>
+              <a class="nav-item active" href="reviews.html">
+                  <span class="nav-link text-muted">Reviews</span>
+                </a>
           </nav>
       </div>
     </header>
@@ -44,7 +50,6 @@
     <div class="row text-center">
       <div class="col-md-4">
           <card class="card">
-              <img class="card-img-top" src="..." alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Table 1</h5>
                 <p class="card-text">Seats: 4</p>
@@ -55,7 +60,6 @@
         </div>
         <div class="col-md-4">
             <card class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">Table 1</h5>
                   <p class="card-text">Seats: 1</p>
@@ -65,8 +69,7 @@
               </card>
           </div>
           <div class="col-md-4">
-              <card class="card">
-                  <img class="card-img-top" src="..." alt="Card image cap">
+              <card class="card">                
                   <div class="card-body">
                     <h5 class="card-title">Table 1</h5>
                     <p class="card-text">Seats: 4</p>
@@ -76,12 +79,29 @@
                 </card>
             </div>
     </div>
+    <div class="row">
+        <h3 class="cover-heading mb-4">My Reservations</h3>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <card class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Table 1</h5>
+                  <p class="card-text">Seats: 4</p>
+                  <p class="card-text">Shape: standard</p>
+                  <p class="card-text">Date: 01/01/01</p>
+                  <p class="card-text">Time: Never</p>              
+                  <button type="submit" class="btn btn-warning">Cancel</button>
+                </div>
+              </card>
+          </div>
+    </div>
 
   </main>
   
   <footer class="mastfoot mt-auto fixed-bottom">
     <div class="inner">
-      <p>Cover template With <a href="https://getbootstrap.com/">Bootstrap</a>, </p>
+      <p>Sample Restraunt using <a href="https://getbootstrap.com/">Bootstrap</a></p>
     </div>
   </footer>
 </div>
