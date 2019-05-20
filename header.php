@@ -1,12 +1,11 @@
 <header class="masthead mb-4">
     <div class="inner">
-        <nav class="nav nav-masthead text-center bg-dark text-white">
+        <nav class="nav nav-masthead text-center bg-dark text-white row">
             <div class="col-4">
             <h3 class="masthead-brand">Sample Restraunt</h3>
-            <div>
+            </div>
             <div class="col-4"> 
-            <div>
-            <div class="col-4">
+            </div>
                 <?php
             $content = array(
                 "Home" => "Home.php",
@@ -25,7 +24,6 @@
                 }
             }
             ?>
-            <div>
         </nav>
     </div>
 </header>
