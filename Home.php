@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 $currentpage = "home";
-include('session.php');
+//include('session.php');
 ?>
 <html>
 
@@ -13,19 +13,9 @@ include('session.php');
 
 <body class="text-center text-white bg-dark">
   <div class="cover-containter">
-    <header class="masthead mb-auto">
-      <div class="inner">
-        <nav class="nav nav-masthead text-left justify-content-center">
-          <h3 class="masthead-brand text-left">Sample Restraunt</h3>
-          <a href="#" class="nav-item active">
-            <span class="nav-link active text-white" href="Home.php">Home</span>
-          </a>
-          <a class="nav-link text-muted" href="menu.php">Menu</a>
-          <a class="nav-link text-muted" href="Reserve.php">Reserves</a>
-          <a class="nav-link text-muted" href="Reviews.php">Reviews</a>
-        </nav>
-      </div>
-    </header>
+  <?php
+  include('header.php');
+  ?>
     <main role="main" class="inner vh-100 d-flex justify-content-center align-items-center">
       <div>
         <h1 class="cover-heading">Fake Restraunt</h1>

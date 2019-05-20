@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 $currentpage = "Reviews";
-include('session.php');
+//include('session.php');
 ?>
 <html>
 
@@ -15,25 +15,9 @@ include('session.php');
 
 <body class="text-center">
   <div class="cover-containter">
-    <header class="masthead mb-4">
-      <div class="inner">
-        <nav class="nav nav-masthead text-right bg-dark text-white">
-          <h3 class="masthead-brand text-left">Sample Restraunt</h3>
-          <a class="nav-item" href="Home.php">
-            <span class="nav-link active text-muted">Home</span>
-          </a>
-          <a class="nav-item active" href="menu.html">
-            <span class="nav-link text-muted">Menu</span>
-          </a>
-          <a class="nav-item active" href="Reserve.php">
-            <span class="nav-link text-muted">Reserves</span>
-          </a>
-          <a class="nav-item active" href="reviews.html">
-            <span class="nav-link text-white">Reviews</span>
-          </a>
-        </nav>
-      </div>
-    </header>
+  <?php
+  include('header.php');
+  ?>
     <main role="main" class="container">
       <div class="row">
         <h1 class="cover-heading mb-4">Reviews</h1>

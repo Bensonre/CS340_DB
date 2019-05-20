@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 $currentpage = "Reserve";
-include('session.php');
+//include('session.php');
 ?>
 <html>
 
