@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
-		$currentpage="Home";
-		include "pages.php";
+   include('session.php');
 ?>
 <html>
 	<head>
