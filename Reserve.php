@@ -9,25 +9,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
 <body class="text-center">
-    <div class="cover-containter"> 
-      <header class="masthead mb-4">
-        <div class="inner">
-          <nav class="nav nav-masthead text-right bg-dark text-white">
-            <h3 class="masthead-brand text-left">Sample Restraunt</h3>
-            <a class="nav-item" href="Home.php">
-              <span class="nav-link active text-muted" >Home</span>
-            </a>
-            <a class="nav-item active" href="menu.html">
-                <span class="nav-link text-muted">Menu</span>
-              </a>
-              <a class="nav-item active" href="Reserve.php">
-                  <span class="nav-link text-white">Reserves</span>
-              </a>
-              <a class="nav-item active" href="reviews.html">
-                  <span class="nav-link text-muted">Reviews</span>
-                </a>
-          </nav>
-      </div>
+    <?php
+      include('header.php'); 
+    ?>
     </header>
   <main role="main" class="container">
     <div class="row">

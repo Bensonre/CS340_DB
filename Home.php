@@ -16,11 +16,11 @@
           <nav class="nav nav-masthead text-left justify-content-center">
             <h3 class="masthead-brand text-left">Sample Restraunt</h3>
             <a href="#" class="nav-item active">
-              <span class="nav-link active text-white" href="#">Home</span>
+              <span class="nav-link active text-white" href="Home.php">Home</span>
         </a>
-        <a class="nav-link text-muted" href="#">Menu</a>
-        <a class="nav-link text-muted" href="#">Reserves</a>
-        <a class="nav-link text-muted" href="#">Reviews</a>
+        <a class="nav-link text-muted" href="menu.php">Menu</a>
+        <a class="nav-link text-muted" href="Reserve.php">Reserves</a>
+        <a class="nav-link text-muted" href="reviews.php">Reviews</a>
       </nav>
     </div>
   </header>
