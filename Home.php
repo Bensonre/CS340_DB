@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$currentpage = "home";
+$currentpage = "Home";
 //include('session.php');
 ?>
 <html>
@@ -22,7 +22,7 @@ $currentpage = "home";
         <p class="lead">This is a Sample site for Restraunts</p>
         <p class="lead">This Restraunts hours are 7:00 AM to 9:00 PM</p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Menu</a>
+          <a href="menu.php" class="btn btn-lg btn-secondary">Menu</a>
         </p>
       </div>
     </main>
