@@ -14,4 +14,3 @@
       header("location:Signin.php");
       die();
    }
-?>
