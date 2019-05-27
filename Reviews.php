@@ -39,7 +39,11 @@ include('session.php');
             </div>
             <div class="col-12 text-right">
               <span>by</span>
-              <span class="text-primary"> @user1</span>
+              <span class="text-primary">
+	      <?php
+			echo $_SESSION['login_user'];
+	      ?>
+              </span>
             </div>
           </div>
           <div class="card-body col-12">
