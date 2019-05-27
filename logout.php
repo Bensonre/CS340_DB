@@ -2,5 +2,6 @@
    session_start();
    
    if(session_destroy()) {
-      header("Location: Signin.php");
+      header("Location: SignIn.php");
    }
+?>

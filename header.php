@@ -4,9 +4,9 @@
             <div class="col-4">
             <h3 class="masthead-brand">Sample Restaurant</h3>
             </div>
-            <div class="col-4"> 
+            <div class="col-3"> 
             </div>
-                <?php
+                <?php 
             $content = array(
                 "Home" => "Home.php",
                 "Menu" => "menu.php",
@@ -31,9 +31,9 @@
 		}
 
             else{
-                    echo "<a class='nav-item'>";
+                    echo "<a href='logout.php' class='nav-item'>";
+                    echo "<span class='nav-link active text-muted'>Logout</span></a>";
 
-                    echo "<span class='nav-link active text-muted'>Hello" . $_Sesion['login_user'] . "</span></a>";
 		}
             ?>
         </nav>

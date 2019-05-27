@@ -1,6 +1,7 @@
 <?php
 $currentpage = "Home";
 include('session.php');
+include('config.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@ include('session.php');
   <div class="cover-containter">
   <?php
   include('header.php');
+  include('config.php');
   ?>
     <main role="main" class="inner vh-100 d-flex justify-content-center align-items-center">
       <div>

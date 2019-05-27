@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include("config.php");
 session_start();
@@ -8,26 +7,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $myusername = mysqli_real_escape_string($db, $_POST['username']);
   $mypassword = mysqli_real_escape_string($db, $_POST['password']);
-
+ 
   $sql = "SELECT Cid FROM Customer WHERE Email = '$myusername' and Password = '$mypassword'";
   $result = mysqli_query($db, $sql);
-  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-  $active = $row['active'];
+  if(!result){
+	die("failed to get result");
+  }
+  $row = mysqli_fetch_row($result);
 
   $count = mysqli_num_rows($result);
 
   // If result matched $myusername and $mypassword, table row must be 1 row
 
   if ($count == 1) {
-    session_register("myusername");
+//    session_register("myusername");
     $_SESSION['login_user'] = $myusername;
-
     header("location:Home.php");
-  } else {
-    $error = "Your Login Name or Password is invalid";
+  } 
+  else {
+   echo "<h1 class'text-danger'>Error bad username or password!</h1>";
   }
-}
+ }
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -46,10 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <form class="form-signin col-4" action="" method="post">
         <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only col">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" name="username" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required="">
+        <label for="username" class="sr-only col">Email address</label>
+        <input type="email" id="username" class="form-control" name="username" placeholder="Email address" required="" autofocus="">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" name="password" placeholder="Password" required="">
         <div class="nav-item mb-3">
           <label>
           Don't have an Acount?  <a href="Register.php"> Register <a/>
