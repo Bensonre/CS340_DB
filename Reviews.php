@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 $currentpage = "Reviews";
-//include('session.php');
+include('session.php');
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>

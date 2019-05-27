@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $myusername = mysqli_real_escape_string($db, $_POST['username']);
   $mypassword = mysqli_real_escape_string($db, $_POST['password']);
 
-  $sql = "SELECT id FROM Customer WHERE username = '$myusername' and password = '$mypassword'";
+  $sql = "SELECT Cid FROM Customer WHERE Email = '$myusername' and Password = '$mypassword'";
   $result = mysqli_query($db, $sql);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $active = $row['active'];
@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="email" id="inputEmail" class="form-control" name="username" placeholder="Email address" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required="">
-        <div class="checkbox mb-3">
+        <div class="nav-item mb-3">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+          Don't have an Acount?  <a href="Register.php"> Register <a/>
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

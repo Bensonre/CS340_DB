@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 $currentpage = "Menu";
-//include('session.php');
+include('session.php');
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>

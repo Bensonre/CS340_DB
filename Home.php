@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 $currentpage = "Home";
-//include('session.php');
+include('session.php');
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -18,7 +18,7 @@ $currentpage = "Home";
   ?>
     <main role="main" class="inner vh-100 d-flex justify-content-center align-items-center">
       <div>
-        <h1 class="cover-heading">Fake Restraunt</h1>
+        <h1 class="cover-heading">Fake Restaurant</h1>
         <p class="lead">This is a Sample site for Restraunts</p>
         <p class="lead">This Restraunts hours are 7:00 AM to 9:00 PM</p>
         <p class="lead">

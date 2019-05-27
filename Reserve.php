@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 $currentpage = "Reserve";
-//include('session.php');
+include('session.php');
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>
