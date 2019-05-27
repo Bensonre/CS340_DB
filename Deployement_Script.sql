@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `persist_cs340_schutfoj`
+-- Database: `cs340_bensonre`
 --
 
 -- --------------------------------------------------------
@@ -29,21 +29,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Customer` (
-  `CId` int(11) PRIMARY KEY NOT NULL,
-  `Email` VARCHAR(Max) UNIQUE NOT NULL,
+  `Cid` int(11) NOT NULL,
+  `Email` VARCHAR(50) NOT NULL,
   `Name` VARCHAR(30) NOT NULL, 
   `Password` VARCHAR(30) NOT NULL,
-  `ReviewText` VARCHAR(Max) DEFAULT NUll,
+  `ReviewText` VARCHAR(256) DEFAULT NULL,
   `ReviewRating` int(2) DEFAULT NULL,
-  `OwnerFollowUp` VARCHAR(Max) DEFAULT NULL,
-  `Visits` int 11 DEFAULT Null,
+  `OwnerFollowUp` VARCHAR(50) DEFAULT NULL,
+  `Visits` int (11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+ALTER TABLE `Customer`
+  ADD PRIMARY KEY (`Cid`),
+  ADD UNIQUE (`Email`);
 --
 -- Dumpiang data for table `Customer`
 --
 
-INSERT INTO `Catalog` (`CId`, `Email`, `Name`, `Password`) VALUES
+INSERT INTO `Customer` (`CId`, `Email`, `Name`, `Password`) VALUES
 (1, 'anEmail@email.com', 'User', 'a'),
 (2, '9001@email.com', 'Over 9000', 'a'),
 (3, 'sample@email.com', 'Sample', 'a'),
