@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Customer` (
-  `Cid` int(11) NOT NULL,
+  `Cid` int(11) NOT NULL Primary Key Auto_Increment,
   `Email` VARCHAR(50) NOT NULL,
   `Name` VARCHAR(30) NOT NULL, 
   `Password` VARCHAR(30) NOT NULL,
@@ -41,7 +41,6 @@ CREATE TABLE `Customer` (
 
 
 ALTER TABLE `Customer`
-  ADD PRIMARY KEY (`Cid`),
   ADD UNIQUE (`Email`);
 --
 -- Dumpiang data for table `Customer`
