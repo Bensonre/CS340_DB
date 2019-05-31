@@ -13,7 +13,6 @@ include('session.php');
 
 <?php
 	include "header.php";
-	$tableboxes = "";
 
 	// change the value of $dbuser and $dbpass to your username and password
 	include 'connectvars.php'; 
@@ -84,10 +83,11 @@ include('session.php');
 		$result = mysqli_query($conn, $query);
 		// If there are none, say so
 		if (mysqli_num_rows($result) == 0) {
-			$tableboxes =  "<p>No Tables are avalible at this time.</p>";
+			echo "<p>No Tables are avalible at this time.</p>";
 		} else{ // Else display them
 			while ($row = mysqli_fetch_assoc($result)) {
-      				echo '<div class="col-md-4">';
+      			
+				echo '<form class="col-md-4">';
 			        echo '<card class="card">';
 			        echo '<div class="card-body">';
 			        echo '<h5 class="card-title">Table ' . $row["Tid"] . '</h5>';
@@ -96,7 +96,7 @@ include('session.php');
    			        echo '<button type="submit" class="btn btn-primary">Reserve</button>';
 			        echo '</div>';
 			        echo '</card>';
-		  	        echo '</div>';
+				echo '</form>';
 			}
 		}
 	}
