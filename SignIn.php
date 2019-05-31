@@ -7,11 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $myusername = mysqli_real_escape_string($db, $_POST['username']);
   $mypassword = mysqli_real_escape_string($db, $_POST['password']);
- 
+
   $sql = "SELECT Cid FROM Customer WHERE Email = '$myusername' and Password = '$mypassword'";
   $result = mysqli_query($db, $sql);
-  if(!result){
-	die("failed to get result");
+  if (!result) {
+    die("failed to get result");
   }
   $row = mysqli_fetch_row($result);
 
@@ -20,14 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // If result matched $myusername and $mypassword, table row must be 1 row
 
   if ($count == 1) {
-//    session_register("myusername");
+    //    session_register("myusername");
     $_SESSION['login_user'] = $myusername;
     header("location:Home.php");
-  } 
-  else {
-   echo "<h1 class'text-danger'>Error bad username or password!</h1>";
+  } else {
+    echo "<h1 class'text-danger'>Error bad username or password!</h1>";
   }
- }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="text-center">
   <div class="cover-containter">
-  <?php
-  include('header.php');
-  ?>
+    <?php
+    include('header.php');
+    ?>
     <main class="row">
       <div class="col-4"> </div>
       <form class="form-signin col-4" action="" method="post">
@@ -54,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="password" class="form-control" name="password" placeholder="Password" required="">
         <div class="nav-item mb-3">
           <label>
-          Don't have an Acount?  <a href="Register.php"> Register <a/>
+            Don't have an Acount? <a href="Register.php"> Register <a />
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
