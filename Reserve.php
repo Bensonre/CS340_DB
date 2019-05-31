@@ -21,6 +21,13 @@ include('session.php');
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
+
+	// Get email from session and query for corresponding ID.
+	$Email = $_SESSION['login_user'];
+	$query = "SELECT Cid FROM Customer WHERE Email='$Email'";
+	$result = mysqli_query($conn, $query);
+	$row = mysqli_fetch_assoc($result);
+	$Cid = $row["Cid"];
 	
 /*	
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -87,12 +94,15 @@ include('session.php');
 		} else{ // Else display them
 			while ($row = mysqli_fetch_assoc($result)) {
       			
-				echo '<form class="col-md-4">';
+				echo '<form class="col-md-4" method="post">';
 			        echo '<card class="card">';
 			        echo '<div class="card-body">';
 			        echo '<h5 class="card-title">Table ' . $row["Tid"] . '</h5>';
+			        echo '<input type="hidden" name="Tid" value=' . $row["Tid"] . '>';
 			        echo '<p class="card-text">Seats: ' . $row["NumberOfSeats"] . '</p>';
+			        echo '<input type="hidden" name="NumberOfSeats" value=' . $row["NumberOfSeats"] . '>';
 			        echo '<p class="card-text">Shape: ' . $row["Shape"] . '</p>';
+			        echo '<input type="hidden" name="Shape" value=' . $row["Shape"] . '>';
    			        echo '<button type="submit" class="btn btn-primary">Reserve</button>';
 			        echo '</div>';
 			        echo '</card>';
@@ -100,7 +110,38 @@ include('session.php');
 			}
 		}
 	}
+	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	
+		// Get data from clicked box 
+		$Tid = mysqli_real_escape_string($conn, $_POST['Tid']);
+		$NumberOfSeats = mysqli_real_escape_string($conn, $_POST['NumberOfSeats']);
+		$Shape = mysqli_real_escape_string($conn, $_POST['Shape']);
 
+		echo $Tid;
+		echo $NumberOfSeats;
+		echo $Shape;
+		echo $Cid;
+
+/*	
+		// See you already have a table reserved
+		$queryIn = "SELECT * FROM Reservation where date='$sdate' and (time='$stime' or time+1='$stime' ";
+		$resultIn = mysqli_query($conn, $queryIn);
+		
+		//If you do, quit
+		if (mysqli_num_rows($resultIn)> 0) {
+			$msg ="<h2>Can't add reservation</h2> You already have made one.<p>";
+		} else {
+			// attempt insert query 
+			$query = "INSERT INTO Supplier (sid, sname, city) VALUES ('$sid', '$sname', '$city')";
+			if(mysqli_query($conn, $query)){
+				$msg =  "Reservation added successfully.<p>";
+		} else{
+				echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+			}
+		}
+*/
+	}
    ?>
     </div>
     <div class="row">
