@@ -67,7 +67,7 @@ include('session.php');
 		$result = mysqli_query($conn, $query);
 		// If there are none, say so
 		if (mysqli_num_rows($result) == 0) {
-			echo "<p>No Tables are avalible at this time.</p>";
+			echo "<p>No tables are avalible at this time.</p>";
 		} else{ // Else display them
 			while ($row = mysqli_fetch_assoc($result)) {
       			
@@ -87,8 +87,9 @@ include('session.php');
 			}
 		}
 	}
-	
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	// If posting and insert prereqs satisfied, try to insert reservation to reservation table	
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['Tid'] && $_POST['StartTime'] && $_POST['StartDate']) {
 	
 		// Get data from clicked box 
 		$Tid = mysqli_real_escape_string($conn, $_POST['Tid']);
@@ -120,10 +121,11 @@ include('session.php');
       <h3 class="cover-heading mb-4">My Reservations</h3>
     </div>
     <div class="row text-center">
+   
     <?php
 
-	// If fetching, get users reservation
-	if ($_SERVER["REQUEST_METHOD"] == "GET") {
+	// If fetching or just inserted, get users reservation
+	if ($_SERVER["REQUEST_METHOD"] == "GET" || ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['StartTime'])) {
 	
 		// Escape user inputs for security
 
@@ -156,33 +158,19 @@ include('session.php');
 			}
 		}
 	}
-/*	
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	
-		// Get data from clicked box 
-		$Tid = mysqli_real_escape_string($conn, $_POST['Tid']);
-		$StartTime = mysqli_real_escape_string($conn, $_POST['StartTime']);
-		$StartDate = mysqli_real_escape_string($conn, $_POST['StartDate']);
-		$StartDateTime = "$StartDate $StartTime";
 
-		// See you already have a table reserved
-		$queryIn = "SELECT * FROM Reservation WHERE Cid='$Cid'";
-		$resultIn = mysqli_query($conn, $queryIn);
-		
-		//If you do, quit
-		if (mysqli_num_rows($resultIn)> 0) {
-			echo "<p>Can't add reservation. You already have made one.</p>";
+	// If deleting, remove users reservation	
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['DeleteTid']) {
+	
+		// Remove current users reservation
+		$query = "DELETE FROM Reservation WHERE Cid='$Cid'";
+		if(mysqli_query($conn, $query)){
+			echo "<p>Reservation deleted successfully.</p>";
 		} else {
-			// attempt insert query 
-			$query = "INSERT INTO Reservation (Cid, Tid, StartTime) VALUES ('$Cid', '$Tid', '$StartDateTime')";
-			if(mysqli_query($conn, $query)){
-				echo "<p>Reservation added successfully.</p>";
-			} else{
-				echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
-			}
+			echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+
 		}
 	}
-*/
    ?>
 
     </div>
