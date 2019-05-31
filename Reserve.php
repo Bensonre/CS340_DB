@@ -29,32 +29,8 @@ include('session.php');
 	$row = mysqli_fetch_assoc($result);
 	$Cid = $row["Cid"];
 	
-/*	
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	
-		// GET DATA FROM CLICKED BOX AND SESSION
-	
-		// See you already have a table reserved
-		$queryIn = "SELECT * FROM Reservation where date='$sdate' and (time='$stime' or time+1='$stime' ";
-		$resultIn = mysqli_query($conn, $queryIn);
-		
-		//If you do, quit
-		if (mysqli_num_rows($resultIn)> 0) {
-			$msg ="<h2>Can't add reservation</h2> You already have made one.<p>";
-		} else {
-			// attempt insert query 
-			$query = "INSERT INTO Supplier (sid, sname, city) VALUES ('$sid', '$sname', '$city')";
-			if(mysqli_query($conn, $query)){
-				$msg =  "Reservation added successfully.<p>";
-		} else{
-				echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
-			}
-		}
-	}
-*/
-
-
 ?>
+
 <body class="text-center">
   <main role="main" class="container">
     <div class="row">
@@ -74,6 +50,7 @@ include('session.php');
       <h3 class="cover-heading mb-4">Reserve a Table</h3>
     </div>
     <div class="row text-center">
+
     <?php
 
 	// If fetching open tables
@@ -99,10 +76,10 @@ include('session.php');
 			        echo '<div class="card-body">';
 			        echo '<h5 class="card-title">Table ' . $row["Tid"] . '</h5>';
 			        echo '<input type="hidden" name="Tid" value=' . $row["Tid"] . '>';
+			        echo '<input type="hidden" name="StartDate" value=' . $sdate . '>';
+			        echo '<input type="hidden" name="StartTime" value=' . $stime . '>';
 			        echo '<p class="card-text">Seats: ' . $row["NumberOfSeats"] . '</p>';
-			        echo '<input type="hidden" name="NumberOfSeats" value=' . $row["NumberOfSeats"] . '>';
 			        echo '<p class="card-text">Shape: ' . $row["Shape"] . '</p>';
-			        echo '<input type="hidden" name="Shape" value=' . $row["Shape"] . '>';
    			        echo '<button type="submit" class="btn btn-primary">Reserve</button>';
 			        echo '</div>';
 			        echo '</card>';
@@ -115,34 +92,29 @@ include('session.php');
 	
 		// Get data from clicked box 
 		$Tid = mysqli_real_escape_string($conn, $_POST['Tid']);
-		$NumberOfSeats = mysqli_real_escape_string($conn, $_POST['NumberOfSeats']);
-		$Shape = mysqli_real_escape_string($conn, $_POST['Shape']);
+		$StartTime = mysqli_real_escape_string($conn, $_POST['StartTime']);
+		$StartDate = mysqli_real_escape_string($conn, $_POST['StartDate']);
+		$StartDateTime = "$StartDate $StartTime";
 
-		echo $Tid;
-		echo $NumberOfSeats;
-		echo $Shape;
-		echo $Cid;
-
-/*	
 		// See you already have a table reserved
-		$queryIn = "SELECT * FROM Reservation where date='$sdate' and (time='$stime' or time+1='$stime' ";
+		$queryIn = "SELECT * FROM Reservation WHERE Cid='$Cid'";
 		$resultIn = mysqli_query($conn, $queryIn);
 		
 		//If you do, quit
 		if (mysqli_num_rows($resultIn)> 0) {
-			$msg ="<h2>Can't add reservation</h2> You already have made one.<p>";
+			echo "<p>Can't add reservation. You already have made one.</p>";
 		} else {
 			// attempt insert query 
-			$query = "INSERT INTO Supplier (sid, sname, city) VALUES ('$sid', '$sname', '$city')";
+			$query = "INSERT INTO Reservation (Cid, Tid, StartTime) VALUES ('$Cid', '$Tid', '$StartDateTime')";
 			if(mysqli_query($conn, $query)){
-				$msg =  "Reservation added successfully.<p>";
-		} else{
+				echo "<p>Reservation added successfully.</p>";
+			} else{
 				echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
 			}
 		}
-*/
 	}
    ?>
+
     </div>
     <div class="row">
       <h3 class="cover-heading mb-4">My Reservations</h3>
@@ -177,4 +149,5 @@ include('session.php');
 	// close connection
 	mysqli_close($conn);
     ?>
+
 </html>
