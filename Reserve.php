@@ -53,7 +53,7 @@ include('session.php');
 
     <?php
 
-	// If fetching open tables
+	// If searching, show open tables
 	if ($_SERVER["REQUEST_METHOD"] == "GET" && $_GET['search-date'] && _GET['search-time']) {
 	
 		// Escape user inputs for security
@@ -120,20 +120,72 @@ include('session.php');
       <h3 class="cover-heading mb-4">My Reservations</h3>
     </div>
     <div class="row text-center">
-      <div class="col-md-4">
-        <card class="card">
-          <div class="card-body">
-            <h5 class="card-title">Table 1</h5>
-            <p class="card-text">Seats: 4</p>
-            <p class="card-text">Shape: standard</p>
-            <p class="card-text">Date: 01/01/01</p>
-            <p class="card-text">Time: Never</p>
-            <button type="submit" class="btn btn-warning">Cancel</button>
-          </div>
-        </card>
-      </div>
-    </div>
+    <?php
 
+	// If fetching, get users reservation
+	if ($_SERVER["REQUEST_METHOD"] == "GET") {
+	
+		// Escape user inputs for security
+
+		// Get the tables that are open
+		$query = "SELECT * FROM Reservation WHERE Cid='$Cid'";
+		$result = mysqli_query($conn, $query);
+		// If there are none, say so
+		if (mysqli_num_rows($result) == 0) {
+			echo "<p>You don't have a reservation.  Why not make one?</p>";
+		} else{ // Else display them
+			$row = mysqli_fetch_assoc($result);
+			$Tid = $row["Tid"];
+			$StartTime = $row["StartTime"];
+			$query = "SELECT * FROM Tables WHERE Tid='$Tid'";
+			$result = mysqli_query($conn, $query);
+			while ($row = mysqli_fetch_assoc($result)) {
+      			
+				echo '<form class="col-md-4" method="post">';
+			        echo '<card class="card">';
+			        echo '<div class="card-body">';
+			        echo '<h5 class="card-title">Table ' . $row["Tid"] . '</h5>';
+			        echo '<input type="hidden" name="DeleteTid" value=' . $row["Tid"] . '>';
+			        echo '<p class="card-text">Seats: ' . $row["NumberOfSeats"] . '</p>';
+			        echo '<p class="card-text">Shape: ' . $row["Shape"] . '</p>';
+			        echo '<p class="card-text">Time: ' . $StartTime . '</p>';
+   			        echo '<button type="submit" class="btn btn-warning">Cancel</button>';
+			        echo '</div>';
+			        echo '</card>';
+				echo '</form>';
+			}
+		}
+	}
+/*	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	
+		// Get data from clicked box 
+		$Tid = mysqli_real_escape_string($conn, $_POST['Tid']);
+		$StartTime = mysqli_real_escape_string($conn, $_POST['StartTime']);
+		$StartDate = mysqli_real_escape_string($conn, $_POST['StartDate']);
+		$StartDateTime = "$StartDate $StartTime";
+
+		// See you already have a table reserved
+		$queryIn = "SELECT * FROM Reservation WHERE Cid='$Cid'";
+		$resultIn = mysqli_query($conn, $queryIn);
+		
+		//If you do, quit
+		if (mysqli_num_rows($resultIn)> 0) {
+			echo "<p>Can't add reservation. You already have made one.</p>";
+		} else {
+			// attempt insert query 
+			$query = "INSERT INTO Reservation (Cid, Tid, StartTime) VALUES ('$Cid', '$Tid', '$StartDateTime')";
+			if(mysqli_query($conn, $query)){
+				echo "<p>Reservation added successfully.</p>";
+			} else{
+				echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+			}
+		}
+	}
+*/
+   ?>
+
+    </div>
   </main>
 
   <footer class="mastfoot mt-auto fixed-bottom">
