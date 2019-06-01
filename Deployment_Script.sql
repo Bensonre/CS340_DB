@@ -51,21 +51,59 @@ INSERT INTO `Menu` (`Title`, `Season`, `Period of Day`) VALUES
 ('le Cheval de Jade', 'Spring', 'Brunch'),
 ('le Parloir Silencieux', 'Spring', 'Brunch');
 
+--
+-- `Contains` table structure
+--
+CREATE TABLE `Contains` (
+  `Price` int(8) NOT NULL,
+  `Menu` VARCHAR(40) NOT NULL,
+  `Dish` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (Menu, Dish), 
+  FOREIGN KEY (Menu) REFERENCES Menu (Title),
+  FOREIGN KEY (Dish) REFERENCES Dish (DishName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for `Contains` table
+--
+INSERT INTO `Contains` (`Price`, `Menu`, `Dish`) VALUES
+(8.5, 'Phils Phreaky Filling Filberts', 'Morel and ezekiel salad'),
+(8, 'Phils Phreaky Filling Filberts', 'Martini and strawberry tiramisu'),
+(9.5, 'Phils Phreaky Filling Filberts', 'Pepper and banana madras'),
+(10.5, 'Phils Phreaky Filling Filberts', 'Kalnji and cheshire cheese salad'),
+(8.5, 'Phils Phreaky Filling Filberts', 'Donair and kalnji salad'),
+(7.5, 'A Taste of Myanmar', 'Pepper and banana madras'),
+(7, 'A Taste of Myanmar', 'Roast daikon'),
+(8.5, 'A Taste of Myanmar', 'Pepper and coconut curry'),
+(7.5, 'A Taste of Myanmar', 'Kalnji and cheshire cheese salad'),
+(7, 'A Taste of Myanmar', 'Aubergine and plantain curry'),
+(5.5, 'A Taste of Myanmar', 'Martini and strawberry tiramisu'),
+(5, 'Reeses Pieces', 'Pepper and banana madras'),
+(4, 'Reeses Pieces', 'Martini and strawberry tiramisu'),
+(6, 'Reeses Pieces', 'Pepper and coconut curry'),
+(20, 'le Tambour de Grande Ville', 'Morel and ezekiel salad'),
+(21, 'le Tambour de Grande Ville', 'Pepper and coconut curry'),
+(16, 'le Tambour de Grande Ville', 'Kalnji and cheshire cheese salad'),
+(18, 'le Tambour de Grande Ville', 'Roast daikon'),
+(19, 'le Tambour de Grande Ville', 'Aubergine and plantain curry'),
+(17.5, 'le Tambour de Grande Ville', 'Donair and kalnji salad');
+
+
 
 --
 -- `Dish` table structure
---
+--   - used 'DishName' because it looked like 'Name' was reserved?
 CREATE TABLE `Dish` (
-  `Name` VARCHAR(40) NOT NULL UNIQUE,
+  `DishName` VARCHAR(40) NOT NULL UNIQUE,
   `Description` VARCHAR(256), 
-  PRIMARY KEY(Name)
+  PRIMARY KEY(DishName)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
 -- Dumping data for `Dish` table
 --
-INSERT INTO `Dish` (`Name`, `Description`) VALUES
+INSERT INTO `Dish` (`DishName`, `Description`) VALUES
 ('Morel and ezekiel salad', 'A crisp salad featuring morel and ezekiel'),
 ('Martini and strawberry tiramisu', 'A silky tiramisu made with martini and fresh strawberries'),
 ('Pepper and coconut curry', 'Hot curry made with red pepper and fresh coconut'),
@@ -76,6 +114,34 @@ INSERT INTO `Dish` (`Name`, `Description`) VALUES
 ('Savoy cabbage and zabaglione salad', 'A crisp salad featuring savoy cabbage and zabaglione'),
 ('Roast daikon', 'Roast daikon served with tender vegetables'),
 ('Aubergine and plantain curry', 'Hot curry made with salted aubergine and fresh plantain');
+
+
+--
+-- `Pictures` table structure
+--
+CREATE TABLE `Picture` (
+  `Pid` int(11) NOT NULL UNIQUE,
+  `URL` VARCHAR(100) NOT NULL,
+  `Dish` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (Pid),
+  FOREIGN KEY (Dish) REFERENCES Dish (DishName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for `Pictures` table
+--
+INSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
+(101, 'https://photos.app.goo.gl/rGY3yRAqnzKFrPDe6', `Morel and ezekiel salad`),
+(102, 'https://photos.app.goo.gl/bhEycDjwMeu5Rzey9', `Martini and strawberry tiramisu`),
+(103, 'https://photos.app.goo.gl/xnRd7uVg5U4WC17w7', 'Pepper and coconut curry'),
+(104, 'https://photos.app.goo.gl/5QHRnrfSPzdx14af9', 'Kalnji and cheshire cheese salad'),
+(105, 'https://photos.app.goo.gl/7TW7VYVdAUBtyCfB6', 'Mangetout and napolitana'),
+(106, 'https://photos.app.goo.gl/Pzh1UHPkdmZd1sn97', 'Pepper and banana madras'),
+(107, 'https://photos.app.goo.gl/wf5o1SY8C4XvMkP29', 'Donair and kalnji salad'),
+(108, 'https://photos.app.goo.gl/gdCbiFCoFyUj91RG7', 'Savoy cabbage and zabaglione salad'),
+(109, 'https://photos.app.goo.gl/KSfCYZ8j4URGfZir9', 'Roast daikon'),
+(110, 'https://photos.app.goo.gl/rNcJJMZHgXu65iAA9', 'Aubergine and plantain curry');
 
 
 
