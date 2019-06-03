@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $myusername = mysqli_real_escape_string($db, $_POST['username']);
   $mypassword = mysqli_real_escape_string($db, $_POST['password']);
 
-  $sql = "SELECT Cid FROM Customer WHERE Email = '$myusername' and Password = '$mypassword'";
+  $sql = "SELECT Cid FROM Customer WHERE Email = '$myusername' and Password = MD5('$mypassword')";
   $result = mysqli_query($db, $sql);
   if (!result) {
     die("failed to get result");

@@ -32,7 +32,7 @@ CREATE TABLE `Customer` (
   `Cid` int(11) NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(50) NOT NULL UNIQUE,
   `Name` VARCHAR(30) NOT NULL, 
-  `Password` VARCHAR(30) NOT NULL,
+  `Password` VARCHAR(256) NOT NULL,
   PRIMARY KEY(Cid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,16 +41,16 @@ CREATE TABLE `Customer` (
 --
 
 INSERT INTO `Customer` (`Cid`, `Email`, `Name`, `Password`) VALUES
-(1, 'anEmail@email.com', 'User', 'a'),
-(2, '9001@email.com', 'Over 9000', 'a'),
-(3, 'sample@email.com', 'Sample', 'a'),
-(4, 'test@email.com', 'test', 'a'),
-(5, 'HessRobot@email.com', 'Rob Hess', 'a'),
-(6, 'kimth@oregonstate.edu', 'LK Thang', 'a'),
-(7, 'mestasp@oregonstate.edu', 'Phillip Mestas', 'a'),
-(8, 'camachso@oregonstate.edu', 'LK Girl', 'a'),
-(9, 'tester@email.com', 'tester', 'a'),
-(10, 'benlee@oregonstate.edu', 'Ben Lee', 'a');
+(1, 'anEmail@email.com', 'User', '0cc175b9c0f1b6a831c399e269772661'),
+(2, '9001@email.com', 'Over 9000', '0cc175b9c0f1b6a831c399e269772661'),
+(3, 'sample@email.com', 'Sample', '0cc175b9c0f1b6a831c399e269772661'),
+(4, 'test@email.com', 'test', '0cc175b9c0f1b6a831c399e269772661'),
+(5, 'HessRobot@email.com', 'Rob Hess', '0cc175b9c0f1b6a831c399e269772661'),
+(6, 'kimth@oregonstate.edu', 'LK Thang', '0cc175b9c0f1b6a831c399e269772661'),
+(7, 'mestasp@oregonstate.edu', 'Phillip Mestas', '0cc175b9c0f1b6a831c399e269772661'),
+(8, 'camachso@oregonstate.edu', 'LK Girl', '0cc175b9c0f1b6a831c399e269772661'),
+(9, 'tester@email.com', 'tester', '0cc175b9c0f1b6a831c399e269772661'),
+(10, 'benlee@oregonstate.edu', 'Ben Lee', '0cc175b9c0f1b6a831c399e269772661');
 
 
 CREATE TABLE `Review` (
@@ -120,6 +120,23 @@ INSERT INTO `Reservation` (`Cid`, `Tid`, `StartTime`) VALUES
 (8, 8, '2019-06-01 13:30:00'),
 (9, 9, '2019-06-01 13:30:00');
 
+---
+--- Trigers
+---
+drop trigger IF exists WatchForBadUsername
+delimiter $$
+CREATE TRIGGER `WatchForBadUsername`
+BEFORE INSERT ON `Customer` 
+FOR EACH ROW 
+BEGIN 
+	IF (New.Email NOT LIKE '%@%.%') THEN 
+		SET New.Email = NULL; 
+	End IF;
+	IF (New.Email Like '%;%') THEN 
+		SET New.Email = NULL; 
+	END IF; 
+END;
+$$
 
 --
 -- DO NOT DELETE
