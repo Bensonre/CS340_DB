@@ -51,6 +51,34 @@ INSERT INTO `Menu` (`Title`, `Season`, `Period of Day`) VALUES
 ('le Cheval de Jade', 'Spring', 'Brunch'),
 ('le Parloir Silencieux', 'Spring', 'Brunch');
 
+
+--
+-- `Dish` table structure
+--   - used 'DishName' because it looked like 'Name' was reserved?
+CREATE TABLE `Dish` (
+  `DishName` VARCHAR(40) NOT NULL UNIQUE,
+  `Description` VARCHAR(256), 
+  PRIMARY KEY(DishName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for `Dish` table
+--
+INSERT INTO `Dish` (`DishName`, `Description`) VALUES
+('Morel and ezekiel salad', 'A crisp salad featuring morel and ezekiel'),
+('Martini and strawberry tiramisu', 'A silky tiramisu made with martini and fresh strawberries'),
+('Pepper and coconut curry', 'Hot curry made with red pepper and fresh coconut'),
+('Kalnji and cheshire cheese salad', 'Kalnji and cheshire cheese served on a bed of lettuce'),
+('Mangetout and napolitana', 'A crunchy salad featuring fresh mangetout and napolitana'),
+('Pepper and banana madras', 'Medium-hot madras made with orange pepper and fresh banana'),
+('Donair and kalnji salad', 'A crunchy salad featuring donair and kalnji'),
+('Savoy cabbage and zabaglione salad', 'A crisp salad featuring savoy cabbage and zabaglione'),
+('Roast daikon', 'Roast daikon served with tender vegetables'),
+('Aubergine and plantain curry', 'Hot curry made with salted aubergine and fresh plantain');
+
+
+
 --
 -- `Contains` table structure
 --
@@ -90,31 +118,6 @@ INSERT INTO `Contains` (`Price`, `Menu`, `Dish`) VALUES
 
 
 
---
--- `Dish` table structure
---   - used 'DishName' because it looked like 'Name' was reserved?
-CREATE TABLE `Dish` (
-  `DishName` VARCHAR(40) NOT NULL UNIQUE,
-  `Description` VARCHAR(256), 
-  PRIMARY KEY(DishName)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
---
--- Dumping data for `Dish` table
---
-INSERT INTO `Dish` (`DishName`, `Description`) VALUES
-('Morel and ezekiel salad', 'A crisp salad featuring morel and ezekiel'),
-('Martini and strawberry tiramisu', 'A silky tiramisu made with martini and fresh strawberries'),
-('Pepper and coconut curry', 'Hot curry made with red pepper and fresh coconut'),
-('Kalnji and cheshire cheese salad', 'Kalnji and cheshire cheese served on a bed of lettuce'),
-('Mangetout and napolitana', 'A crunchy salad featuring fresh mangetout and napolitana'),
-('Pepper and banana madras', 'Medium-hot madras made with orange pepper and fresh banana'),
-('Donair and kalnji salad', 'A crunchy salad featuring donair and kalnji'),
-('Savoy cabbage and zabaglione salad', 'A crisp salad featuring savoy cabbage and zabaglione'),
-('Roast daikon', 'Roast daikon served with tender vegetables'),
-('Aubergine and plantain curry', 'Hot curry made with salted aubergine and fresh plantain');
-
 
 --
 -- `Pictures` table structure
@@ -153,7 +156,7 @@ CREATE TABLE `Customer` (
   `Cid` int(11) NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(50) NOT NULL UNIQUE,
   `Name` VARCHAR(30) NOT NULL, 
-  `Password` VARCHAR(30) NOT NULL,
+  `Password` VARCHAR(250) NOT NULL,
   PRIMARY KEY(Cid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -162,16 +165,16 @@ CREATE TABLE `Customer` (
 -- Dumping data for `Customer` table
 --
 INSERT INTO `Customer` (`Cid`, `Email`, `Name`, `Password`) VALUES
-(1, 'anEmail@email.com', 'User', 'a'),
-(2, '9001@email.com', 'Over 9000', 'a'),
-(3, 'sample@email.com', 'Sample', 'a'),
-(4, 'test@email.com', 'test', 'a'),
-(5, 'HessRobot@email.com', 'Rob Hess', 'a'),
-(6, 'kimth@oregonstate.edu', 'LK Thang', 'a'),
-(7, 'mestasp@oregonstate.edu', 'Phillip Mestas', 'a'),
-(8, 'camachso@oregonstate.edu', 'LK Girl', 'a'),
-(9, 'tester@email.com', 'tester', 'a'),
-(10, 'benlee@oregonstate.edu', 'Ben Lee', 'a');
+(1, 'anEmail@email.com', 'User', '0cc175b9c0f1b6a831c399e269772661'),
+(2, '9001@email.com', 'Over 9000', '0cc175b9c0f1b6a831c399e269772661'),
+(3, 'sample@email.com', 'Sample', '0cc175b9c0f1b6a831c399e269772661'),
+(4, 'test@email.com', 'test', '0cc175b9c0f1b6a831c399e269772661'),
+(5, 'HessRobot@email.com', 'Rob Hess', '0cc175b9c0f1b6a831c399e269772661'),
+(6, 'kimth@oregonstate.edu', 'LK Thang', '0cc175b9c0f1b6a831c399e269772661'),
+(7, 'mestasp@oregonstate.edu', 'Phillip Mestas', '0cc175b9c0f1b6a831c399e269772661'),
+(8, 'camachso@oregonstate.edu', 'LK Girl', '0cc175b9c0f1b6a831c399e269772661'),
+(9, 'tester@email.com', 'tester', '0cc175b9c0f1b6a831c399e269772661'),
+(10, 'benlee@oregonstate.edu', 'Ben Lee', '0cc175b9c0f1b6a831c399e269772661');
 
 
 --
