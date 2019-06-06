@@ -1,9 +1,10 @@
-DELETE FROM Review;
-DELETE FROM Reservation;
-DROP TABLE Review;
+DROP TABLE Picture;
 DROP TABLE Reservation;
-
-DELETE FROM Customer;
-DELETE FROM Tables;
-DROP TABLE Customer;
+DROP TABLE Contains;
+DROP TABLE Menu;
 DROP TABLE Tables;
+DROP TABLE Uses;
+DROP TABLE Ingredients;
+DROP TABLE Dish;
+DROP TABLE Review;
+DROP TABLE Customer;
