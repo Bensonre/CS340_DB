@@ -23,13 +23,6 @@ include('session.php');
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-
-	// Get email from session and query for corresponding ID.
-	$Email = $_SESSION['login_user'];
-	$query = "SELECT Cid FROM Customer WHERE Email='$Email'";
-	$result = mysqli_query($conn, $query);
-	$row = mysqli_fetch_assoc($result);
-	$Cid = $row["Cid"];
 // END PHP HEADER
 ?>
 
@@ -42,7 +35,7 @@ include('session.php');
       </div>
       <form class="row mb-3">
         <label for="search" class="font-weight-bold mr-3">Search For Dish</label>
-        <input type="text" id="search" />
+        <input type="text" id="search" name="search" />
         <button type="submit" id="findTable" class="btn btn-primary btn-sm ml-3">GO</button>
       </form>
     </main>
@@ -50,9 +43,9 @@ include('session.php');
 
   <!-- BEGIN MENU CARD CONTAINER -->
   <card class="card row d-flex flex-row"> 
-        <h3 class="col-5 border bg-light"> Breakfast</h3>
+        <!-- <h3 class="col-5 border bg-light"> Breakfast</h3>
         <h3 class="col-3 border bg-light"> Lunch</h3>
-        <h3 class="col-3 border bg-light"> Dinner</h3>
+        <h3 class="col-3 border bg-light"> Dinner</h3> -->
         <div class="row"> 
           
 <?php
@@ -63,9 +56,9 @@ include('session.php');
 		// Escape user inputs for security
 		$userquery = mysqli_real_escape_string($conn, $_GET['search']);
 
-    // Get the menus that fit query    
-    // I realize this query is specific to dinner at the moment and don't know what I should do about it
-    $query = "SELECT DISTINCT Contains.Dish, Contains.Price, Menu.Title, Picture.URL, Dish.Description FROM Menu JOIN Contains ON Menu.Title=Contains.menu JOIN Dish ON Dish.DishName = Contains.Dish NATURAL JOIN Picture WHERE (Menu.PeriodOfDay = 'Dinner' OR Menu.PeriodOfDay = 'All-Day') and (Contains.menu like '%$userquery%' or Menu.season like '%$userquery%' or  Contains.Dish like '%$userquery%' or Dish.description like '%$userquery%') ORDER by Menu.Title DESC"
+    // Get the menus that fit query 
+    // SEARCH BY INGREDIENT, MENU TITLE, DISH NAME,    
+    $query = "SELECT DISTINCT Dish.DishName, Contains.Dish, Contains.Price, Menu.Title, Menu.Season, Menu.PeriodOfDay, Picture.URL, Dish.Description FROM Menu JOIN Contains ON Menu.Title=Contains.menu JOIN Dish ON Dish.DishName = Contains.Dish NATURAL JOIN Picture WHERE (Contains.menu like '%$userquery%' or Menu.Season like '%$userquery%' or  Contains.Dish like '%$userquery%' or Dish.Description like '%$userquery%') ORDER by Menu.Title DESC";
     $result = mysqli_query($conn, $query);
 
 		// IF NO RESULTS
@@ -77,10 +70,14 @@ include('session.php');
 				echo '<div class="col-md-4">';
 			        echo '<card class="card">';
               echo '<div class="card-body">';
-              echo '<img class="card-image" src="' . $row["Picture.URL"] .'" />'
-              echo '<h5 class="card-title">Menu 1 ' . $row["Title"] . '</h5>'
-              echo '<p class="card-text">Season: ' . $row["Season"] . '</p>';
-              echo '<p class="card-text">Time of Day: ' . $row["PeriodOfDay"] . '</p>';
+              echo '<img class="card-image" src="' . $row["Picture.URL"] .'" />';
+              echo '<h5 class="card-title text-left">' . $row["DishName"] . '</h5>'; // DISH NAME
+              echo '<div class="text-left mb-0">';
+                echo '<p class="card-text mb-0">Menu: <span class="font-weight-light">' . $row["Title"] . '</span></p>';
+                echo '<p class="card-text mb-0">Season: <span class="font-weight-light">' . $row["Season"] . '</span></p>';
+                echo '<p class="card-text mb-0">Time of Day: <span class="font-weight-light">' . $row["PeriodOfDay"] . '</span></p>';
+                echo '<p class="card-text mb-0">Description: <span class="font-weight-light">' . $row["Description"] . '</span></p>';
+              echo '</div>';
               echo '</div>';
 			        echo '</card>';
 				echo '</div>';
