@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 --
 CREATE TABLE `Menu` (
   `Title` VARCHAR(40) NOT NULL UNIQUE,
-  `Season` VARCHAR(30), 
-  `Period of Day` VARCHAR(30), 
+  `Season` VARCHAR(30),
+  `PeriodOfDay` VARCHAR(30),
   PRIMARY KEY(Title)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,7 +39,7 @@ CREATE TABLE `Menu` (
 --
 -- Dumping data for `Menu` table
 --
-INSERT INTO `Menu` (`Title`, `Season`, `Period of Day`) VALUES
+INSERT INTO `Menu` (`Title`, `Season`, `PeriodOfDay`) VALUES
 ('Phils Phreaky Filling Filberts', 'Summer', 'All-Day'),
 ('A Taste of Myanmar', 'Summer', 'Dinner'),
 ('Reeses Pieces', 'Dessert', 'Dinner'),
@@ -54,10 +54,10 @@ INSERT INTO `Menu` (`Title`, `Season`, `Period of Day`) VALUES
 
 --
 -- `Dish` table structure
---   - used 'DishName' because it looked like 'Name' was reserved?
+
 CREATE TABLE `Dish` (
   `DishName` VARCHAR(40) NOT NULL UNIQUE,
-  `Description` VARCHAR(256), 
+  `Description` VARCHAR(256),
   PRIMARY KEY(DishName)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -65,6 +65,7 @@ CREATE TABLE `Dish` (
 --
 -- Dumping data for `Dish` table
 --
+
 INSERT INTO `Dish` (`DishName`, `Description`) VALUES
 ('Morel and ezekiel salad', 'A crisp salad featuring morel and ezekiel'),
 ('Martini and strawberry tiramisu', 'A silky tiramisu made with martini and fresh strawberries'),
@@ -79,6 +80,54 @@ INSERT INTO `Dish` (`DishName`, `Description`) VALUES
 
 
 
+CREATE TABLE `Ingredients`(
+	IngredientName VARCHAR(20) NOT NULL,
+	Units INT DEFAULT NULL,
+	Weight FLOAT,
+  PRIMARY KEY(IngredientName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Ingredients` (`IngredientName`, `Units`, `Weight`) VALUES
+('Mushroom', 5, 8.5),
+('Python Meat', 30, 10.7),
+('Garlic', 25, 1.5),
+('Tomatoes', 7, 3),
+('Spinach', 80, 1.0),
+('Sausage', 100, 3.2),
+('Lettuce', 67, 6.5),
+('Salt', 300, 0.1),
+('Pepper', 300, 0.1),
+('Phillip Meat', 4, 9.6);
+
+
+-- Uses Table
+--
+
+CREATE TABLE Uses(
+	`Name` VARCHAR(40) NOT NULL,
+	`IngredientName` VARCHAR(20) NOT NULL,
+  FOREIGN KEY(Name) REFERENCES Dish(DishName),
+  PRIMARY KEY (Name, IngredientName),
+  FOREIGN KEY(IngredientName) REFERENCES Ingredients(IngredientName)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `Uses` (`Name`, `IngredientName`) VALUES
+('Roast daikon', 'Mushroom'),
+('Aubergine and plantain curry', 'Salt'),
+('Morel and ezekiel salad', 'Pepper'),
+('Martini and strawberry tiramisu', 'Phillip Meat'),
+('Pepper and coconut curry', 'Garlic'),
+('Kalnji and cheshire cheese salad', 'Python Meat'),
+('Mangetout and napolitana', 'Tomatoes'),
+('Pepper and banana madras', 'Lettuce'),
+('Donair and kalnji salad', 'Spinach'),
+('Savoy cabbage and zabaglione salad', 'Sausage');
+
+
+
+
 --
 -- `Contains` table structure
 --
@@ -86,7 +135,7 @@ CREATE TABLE `Contains` (
   `Price` int(8) NOT NULL,
   `Menu` VARCHAR(40) NOT NULL,
   `Dish` VARCHAR(40) NOT NULL,
-  PRIMARY KEY (Menu, Dish), 
+  PRIMARY KEY (Menu, Dish),
   FOREIGN KEY (Menu) REFERENCES Menu (Title),
   FOREIGN KEY (Dish) REFERENCES Dish (DishName)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -131,12 +180,10 @@ CREATE TABLE `Picture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
---
--- Dumping data for `Pictures` table
---
+
 INSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
-(101, 'https://photos.app.goo.gl/rGY3yRAqnzKFrPDe6', `Morel and ezekiel salad`),
-(102, 'https://photos.app.goo.gl/bhEycDjwMeu5Rzey9', `Martini and strawberry tiramisu`),
+(101, 'https://photos.app.goo.gl/rGY3yRAqnzKFrPDe6', 'Morel and ezekiel salad'),
+(102, 'https://photos.app.goo.gl/bhEycDjwMeu5Rzey9', 'Martini and strawberry tiramisu'),
 (103, 'https://photos.app.goo.gl/xnRd7uVg5U4WC17w7', 'Pepper and coconut curry'),
 (104, 'https://photos.app.goo.gl/5QHRnrfSPzdx14af9', 'Kalnji and cheshire cheese salad'),
 (105, 'https://photos.app.goo.gl/7TW7VYVdAUBtyCfB6', 'Mangetout and napolitana'),
@@ -155,7 +202,7 @@ INSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
 CREATE TABLE `Customer` (
   `Cid` int(11) NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(50) NOT NULL UNIQUE,
-  `Name` VARCHAR(30) NOT NULL, 
+  `Name` VARCHAR(30) NOT NULL,
   `Password` VARCHAR(250) NOT NULL,
   PRIMARY KEY(Cid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -214,7 +261,7 @@ CREATE TABLE `Tables` (
   `Tid` int(11) NOT NULL,
   `Shape` VARCHAR(50) NOT NULL,
   `NumberOfSeats` int(11) NOT NULL,
-  PRIMARY KEY (Tid) 
+  PRIMARY KEY (Tid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -240,7 +287,7 @@ CREATE TABLE `Reservation` (
   `Cid` int(11) NOT NULL UNIQUE,
   `Tid` int(11) NOT NULL,
   `StartTime` datetime NOT NULL,
-  PRIMARY KEY (Tid, StartTime), 
+  PRIMARY KEY (Tid, StartTime),
   FOREIGN KEY (Tid) REFERENCES Tables (Tid),
   FOREIGN KEY (Cid) REFERENCES Customer (Cid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -267,8 +314,8 @@ INSERT INTO `Reservation` (`Cid`, `Tid`, `StartTime`) VALUES
 -- I promise this is not a joke.
 -- The line above this actually
 -- won't work unless you put something
--- else after.  Why?  No idea. But this 
--- makes it work so ya. 
+-- else after.  Why?  No idea. But this
+-- makes it work so ya.
 --
 
 CREATE TABLE `LK` (
@@ -285,14 +332,14 @@ DROP TABLE `LK`;
 drop trigger IF exists WatchForBadUsername
 delimiter $$
 CREATE TRIGGER `WatchForBadUsername`
-BEFORE INSERT ON `Customer` 
-FOR EACH ROW 
-BEGIN 
-	IF (New.Email NOT LIKE '%@%.%') THEN 
-		SET New.Email = NULL; 
+BEFORE INSERT ON `Customer`
+FOR EACH ROW
+BEGIN
+	IF (New.Email NOT LIKE '%@%.%') THEN
+		SET New.Email = NULL;
 	End IF;
-	IF (New.Email Like '%;%') THEN 
-		SET New.Email = NULL; 
-	END IF; 
+	IF (New.Email Like '%;%') THEN
+		SET New.Email = NULL;
+	END IF;
 END;
 $$
