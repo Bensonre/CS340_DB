@@ -39,7 +39,7 @@ CREATE TABLE `Menu` (
 --
 -- Dumping data for `Menu` table
 --
-INSERT INTO `Menu` (`Title`, `Season`, `Period of Day`) VALUES
+INSERT INTO `Menu` (`Title`, `Season`, `PeriodofDay`) VALUES
 ('Phils Phreaky Filling Filberts', 'Summer', 'All-Day'),
 ('A Taste of Myanmar', 'Summer', 'Dinner'),
 ('Reeses Pieces', 'Dessert', 'Dinner'),
@@ -74,6 +74,9 @@ INSERT INTO `Dish` (`DishName`, `Description`) VALUES
 ('Pepper and banana madras', 'Medium-hot madras made with orange pepper and fresh banana'),
 ('Donair and kalnji salad', 'A crunchy salad featuring donair and kalnji'),
 ('Savoy cabbage and zabaglione salad', 'A crisp salad featuring savoy cabbage and zabaglione'),
+('Roast daikon', 'Roast daikon served with tender vegetables'),
+('Aubergine and plantain curry', 'Hot curry made with salted aubergine and fresh plantain');
+
 
 --
 --ingredients Table
