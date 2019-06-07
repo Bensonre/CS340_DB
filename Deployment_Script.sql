@@ -74,8 +74,57 @@ INSERT INTO `Dish` (`DishName`, `Description`) VALUES
 ('Pepper and banana madras', 'Medium-hot madras made with orange pepper and fresh banana'),
 ('Donair and kalnji salad', 'A crunchy salad featuring donair and kalnji'),
 ('Savoy cabbage and zabaglione salad', 'A crisp salad featuring savoy cabbage and zabaglione'),
-('Roast daikon', 'Roast daikon served with tender vegetables'),
+
+--
+--ingredients Table
+--
+
+CREATE TABLE `Ingredients`(
+	IngredientName VARCHAR(20) PRIMARY KEY NOT NULL,
+	Units INT DEFAULT NULL,
+	Weight FLOAT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Ingredients` (`IngredientName`, `Units`, `Weight`) VALUES
+('Mushroom', 5, 8.5),
+('Python Meat', 30, 10.7),
+('Garlic', 25, 1.5),
+('Tomatoes', 7, 3),
+('Spinach', 80, 1.0),
+('Sausage', 100, 3.2),
+('Lettuce', 67, 6.5),
+('Salt', 300, 0.1),
+('Pepper', 300, 0.1),
+('Phillip Meat', 4, 9.6);('Roast daikon', 'Roast daikon served with tender vegetables'),
 ('Aubergine and plantain curry', 'Hot curry made with salted aubergine and fresh plantain');
+
+
+
+-- Uses Table
+--
+
+CREATE TABLE Uses(
+	`Name` VARCHAR(40) NOT NULL,
+	`IngredientName` VARCHAR(20) NOT NULL,
+  FOREIGN KEY(Name) REFERENCES Dish(DishName),
+  PRIMARY KEY (Name, IngredientName),
+  FOREIGN KEY(IngredientName) REFERENCES Ingredients(IngredientName)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `Uses` (`Name`, `IngredientName`) VALUES
+('Roast daikon', 'Mushroom'),
+('Aubergine and plantain curry', 'Salt'),
+('Morel and ezekiel salad', 'Pepper'),
+('Martini and strawberry tiramisu', 'Phillip Meat'),
+('Pepper and coconut curry', 'Garlic'),
+('Kalnji and cheshire cheese salad', 'Python Meat'),
+('Mangetout and napolitana', 'Tomatoes'),
+('Pepper and banana madras', 'Lettuce'),
+('Donair and kalnji salad', 'Spinach'),
+('Savoy cabbage and zabaglione salad', 'Sausage');
+
 
 
 
