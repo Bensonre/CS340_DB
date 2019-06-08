@@ -7,13 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $mypassword = mysqli_real_escape_string($db, $_POST['inputPassword']);
   $verifypassword = mysqli_real_escape_string($db, $_POST['confirmPassword']);
   if ($verifypassword == $mypassword) {
+    echo "<h1>Hello $myuser, $myName, $mypassword</h1>";
     $sql = "INSERT INTO `Customer` (`Cid`, `Email`, `Name`, `Password`) VALUES (NULL, '$myusername', '$myName', MD5('$mypassword'));";
     $result = mysqli_query($db, $sql);
     if (!$result) {
       die("Failed to Insert" );
     }
       $_SESSION['login_user'] = $myusername;
-      header("location:Home.php");
+//      header("location:Home.php");
   } else {
     echo "<h1 class='text-danger'>Error, Password and Confirm Password Must Match</h1>";
   }
@@ -38,13 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Register</h1>
         <label for="inputEmail" class="sr-only col">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="Name" class="sr-only col">Name</label>
-        <input type="string" id="Name" class="form-control" placeholder="Name" required="" autofocus="">
+        <input type="string" id="Name" name="Name" class="form-control" placeholder="Name" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required="">
         <label for="confirmPassword" class="sr-only"> Confirm Password</label>
-        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required="">
+        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" required="">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
       </form>
