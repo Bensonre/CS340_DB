@@ -103,7 +103,7 @@ include('session.php');
 			else{ // make reviews
          	echo ' <div class="col-8">';
 					while ($row = mysqli_fetch_assoc($result)) {
-				   	echo '<card class="card">';
+				   	echo '<card class="card mb-3">';
             		echo '<div class="card-header">';
                	echo '<div class="text-left">';
 						for ( $i = 0; $i < $row['ReviewRating']; $i++){ //
