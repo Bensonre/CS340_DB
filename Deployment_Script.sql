@@ -343,3 +343,13 @@ BEGIN
 	END IF;
 END;
 $$
+
+drop trigger if exists CreateNewReview
+delimiter $$
+CREATE TRIGGER `CreateNewReview` BEFORE UPDATE ON `Review`
+ FOR EACH ROW BEGIN 
+IF (New.Cid not in (Select Cid from Review)) then
+INSERT INTO Review (`Cid`, `ReviewText`, `ReviewRating`, `Visits`) VALUES (New.CID, New.Reviewtext , New.ReviewRating , New.Visits);
+End if;
+END;
+$$
