@@ -353,3 +353,4 @@ INSERT INTO Review (`Cid`, `ReviewText`, `ReviewRating`, `Visits`) VALUES (New.C
 End if;
 END;
 $$
+

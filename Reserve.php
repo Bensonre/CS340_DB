@@ -2,6 +2,7 @@
 $currentpage = "Reserve";
 include('session.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +32,7 @@ include('session.php');
 	
 ?>
 
+<!-- RESERVE TABLE PROMPT -->
 <body class="text-center">
   <main role="main" class="container">
     <div class="row">
@@ -44,7 +46,7 @@ include('session.php');
       <button type="submit" id="findTable" class="btn btn-primary btn-sm ml-3">Find a Table!</button>
     </form>
     <div class="row">
-      <p class="lead">This Restraunts hours are 7:00 AM to 9:00 PM</p>
+      <p class="lead">This Restaurants hours are 7:00 AM to 9:00 PM</p>
     </div>
     <div class="row">
       <h3 class="cover-heading mb-4">Reserve a Table</h3>
@@ -176,11 +178,6 @@ include('session.php');
     </div>
   </main>
 
-  <footer class="mastfoot mt-auto fixed-bottom">
-    <div class="inner">
-      <p>Sample Restraunt using <a href="https://getbootstrap.com/">Bootstrap</a></p>
-    </div>
-  </footer>
   </div>
 
 </body>
