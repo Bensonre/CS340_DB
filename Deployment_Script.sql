@@ -180,18 +180,17 @@ CREATE TABLE `Picture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-INSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
-(101, 'https://photos.app.goo.gl/rGY3yRAqnzKFrPDe6', 'Morel and ezekiel salad'),
-(102, 'https://photos.app.goo.gl/bhEycDjwMeu5Rzey9', 'Martini and strawberry tiramisu'),
-(103, 'https://photos.app.goo.gl/xnRd7uVg5U4WC17w7', 'Pepper and coconut curry'),
-(104, 'https://photos.app.goo.gl/5QHRnrfSPzdx14af9', 'Kalnji and cheshire cheese salad'),
-(105, 'https://photos.app.goo.gl/7TW7VYVdAUBtyCfB6', 'Mangetout and napolitana'),
-(106, 'https://photos.app.goo.gl/Pzh1UHPkdmZd1sn97', 'Pepper and banana madras'),
-(107, 'https://photos.app.goo.gl/wf5o1SY8C4XvMkP29', 'Donair and kalnji salad'),
-(108, 'https://photos.app.goo.gl/gdCbiFCoFyUj91RG7', 'Savoy cabbage and zabaglione salad'),
-(109, 'https://photos.app.goo.gl/KSfCYZ8j4URGfZir9', 'Roast daikon'),
-(110, 'https://photos.app.goo.gl/rNcJJMZHgXu65iAA9', 'Aubergine and plantain curry');
+NSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
+(101, 'https://i.imgur.com/yzohXCn.jpg', 'Morel and ezekiel salad'),
+(102, 'https://i.imgur.com/s0pjHzu.jpg', 'Martini and strawberry tiramisu'),
+(103, 'https://i.imgur.com/Wt6kO83.jpg', 'Pepper and coconut curry'),
+(104, 'https://i.imgur.com/n6slqA2.jpg', 'Kalnji and cheshire cheese salad'),
+(105, 'https://i.imgur.com/gA34EHG.jpg', 'Mangetout and napolitana'),
+(106, 'https://i.imgur.com/lzKMV6Q.jpg', 'Pepper and banana madras'),
+(107, 'https://i.imgur.com/FoXPyeJ.jpg', 'Donair and kalnji salad'),
+(108, 'https://i.imgur.com/qNPZnLD.jpg', 'Savoy cabbage and zabaglione salad'),
+(109, 'https://i.imgur.com/Jx9ToiJ.jpg', 'Roast daikon'),
+(110, 'https://i.imgur.com/AaH5rZJ.jpg', 'Aubergine and plantain curry');
 
 
 
