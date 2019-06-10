@@ -93,7 +93,7 @@ include('session.php');
 
 		<?php
 			//Populate page with reviews
-  		   $query = "SELECT Review.*, Customer.Name FROM Review, Customer WHERE Review.Cid = Customer.Cid ORDER BY ReviewRating DESC";
+  		   $query = "SELECT Review.*, Customer.Name FROM Review, Customer WHERE Review.Cid = Customer.Cid && Review.ReviewText IS Not Null ORDER BY ReviewRating DESC";
    		$result = mysqli_query($conn, $query);	
 			
 			if (mysqli_num_rows($result) == 0) {
