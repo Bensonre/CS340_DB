@@ -5,6 +5,11 @@ include('session.php');
 
 <!DOCTYPE html>
 <html>
+<style>
+img{
+  max-height: 15em;
+}
+</style>
 
 <head>
   <title>Home</title>
@@ -42,7 +47,7 @@ include('session.php');
   </div>
 
   <!-- BEGIN MENU CARD CONTAINER -->
-  <card class="card row d-flex flex-row"> 
+  <card class="card row d-flex flex-row ml-5 mr-5"> 
         <!-- <h3 class="col-5 border bg-light"> Breakfast</h3>
         <h3 class="col-3 border bg-light"> Lunch</h3>
         <h3 class="col-3 border bg-light"> Dinner</h3> -->
@@ -58,19 +63,19 @@ include('session.php');
 
     // Get the menus that fit query 
     // SEARCH BY INGREDIENT, MENU TITLE, DISH NAME,    
-    $query = "SELECT DISTINCT Dish.DishName, Contains.Dish, Contains.Price, Menu.Title, Menu.Season, Menu.PeriodOfDay, Picture.URL, Dish.Description FROM Menu JOIN Contains ON Menu.Title=Contains.menu JOIN Dish ON Dish.DishName = Contains.Dish NATURAL JOIN Picture WHERE (Menu.PeriodOfDay like '%userquery%' or Contains.menu like '%$userquery%' or Menu.Season like '%$userquery%' or  Contains.Dish like '%$userquery%' or Dish.Description like '%$userquery%') ORDER by Menu.Title DESC";
+    $query = "SELECT DISTINCT Dish.DishName, Contains.Dish, Contains.Price, Menu.Title, Menu.Season, Menu.PeriodOfDay, Picture.URL, Dish.Description FROM Menu JOIN Contains ON Menu.Title=Contains.menu JOIN Dish ON Dish.DishName = Contains.Dish NATURAL JOIN Picture WHERE (Menu.PeriodOfDay like '%$userquery%' or Contains.menu like '%$userquery%' or Menu.Season like '%$userquery%' or  Contains.Dish like '%$userquery%' or Dish.Description like '%$userquery%') ORDER by Menu.Title DESC";
     $result = mysqli_query($conn, $query);
 
 		// IF NO RESULTS
 		if (mysqli_num_rows($result) == 0) {
-			echo "<p>No menus satisfied your query.</p>";
+			echo '<p class="text-center">No menus satisfied your query.</p>';
 		} else{ // ELSE DISPLAY MENUS
 			while ($row = mysqli_fetch_assoc($result)) {
       			
-				echo '<div class="col-md-4">';
+				echo '<div class="col-md-4 text-left">';
 			        echo '<card class="card">';
               echo '<div class="card-body">';
-              echo '<img class="card-image" src="' . $row["Picture.URL"] .'" />';
+              echo '<img class="img-thumbnail card-image" src="' . $row["URL"] . '" >';
               echo '<h5 class="card-title text-left">' . $row["DishName"] . '</h5>'; // DISH NAME
               echo '<div class="text-left mb-0">';
                 echo '<p class="card-text mb-0">Menu: <span class="font-weight-light">' . $row["Title"] . '</span></p>';

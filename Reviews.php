@@ -135,12 +135,6 @@ include('session.php');
 
 
     </main>
-
-    <footer class="mastfoot mt-auto fixed-bottom">
-      <div class="inner">
-        <p>Sample Restraunt using <a href="https://getbootstrap.com/">Bootstrap</a></p>
-      </div>
-    </footer>
   </div>
 
 </body>

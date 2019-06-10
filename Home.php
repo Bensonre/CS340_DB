@@ -28,12 +28,6 @@ include('config.php');
         </p>
       </div>
     </main>
-
-    <footer class="mastfoot mt-auto fixed-bottom">
-      <div class="inner">
-        <p>Cover template With <a href="https://getbootstrap.com/">Bootstrap</a>, </p>
-      </div>
-    </footer>
   </div>
 
 </body>
