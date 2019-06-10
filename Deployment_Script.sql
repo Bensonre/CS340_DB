@@ -242,16 +242,16 @@ CREATE TABLE `Review` (
 -- Dumping data for `Review` table
 --
 INSERT INTO `Review` (`Cid`, `ReviewText`, `ReviewRating`, `OwnerFollowUp`, `Visits`) VALUES
-(1, 'I love this place. I have been going here for years and it is a great place to hang out with friends and family. I love the food and service. I have never had a bad experience when I am there.', 10, 'Thanks!', 56),
-(2, 'I had the grilled veggie burger with fries!!!! Ohhhh and taste. Omgggg! Very flavorful! It was so delicious that I didn’t spell it!!', 10, 'Glad you liked it! Hope to see you again soon.', 1),
-(3, 'My family and I are huge fans of this place. The staff is super nice and the food is great. The chicken is very good and the garlic sauce is perfect. Ice cream topped with fruit is delicious too. Highly recommended!', 10, 'Wow, thanks!', 5),
-(4, 'Cool seating design inside including some countertop space.', 9, '', 4),
-(5, 'I come eat here often and everyone is always so friendly an si Sam she is always super happy and welcomes everyone that walks in and take good care of your order', 10, '', 20),
-(6, 'They are usually all the same so I wont say too much. But my experience at this location was overall positive.', 8, '', 1),
-(7, 'really good Mexican food for a chain restaurant.', 9, '', 5),
+(1, 'I love this place. I have been going here for years and it is a great place to hang out with friends and family. I love the food and service. I have never had a bad experience when I am there.', 5, 'Thanks!', 56),
+(2, 'I had the grilled veggie burger with fries!!!! Ohhhh and taste. Omgggg! Very flavorful! It was so delicious that I didn’t spell it!!', 5, 'Glad you liked it! Hope to see you again soon.', 1),
+(3, 'My family and I are huge fans of this place. The staff is super nice and the food is great. The chicken is very good and the garlic sauce is perfect. Ice cream topped with fruit is delicious too. Highly recommended!', 5, 'Wow, thanks!', 5),
+(4, 'Cool seating design inside including some countertop space.', 4, '', 4),
+(5, 'I come eat here often and everyone is always so friendly an si Sam she is always super happy and welcomes everyone that walks in and take good care of your order', 4, '', 20),
+(6, 'They are usually all the same so I wont say too much. But my experience at this location was overall positive.', 3, '', 1),
+(7, 'really good Mexican food for a chain restaurant.', 4, '', 5),
 (8, 'dont really like the food but a good atmosphere.', 5, '', 6),
-(9, 'Good LK food!', 10, 'Thanks!', 56),
-(10, 'Did not meet my expectations', 2, 'Sorry', 1);
+(9, 'Good LK food!', 4, 'Thanks!', 56),
+(10, 'Did not meet my expectations', 1, 'Sorry', 1);
 
 
 --
