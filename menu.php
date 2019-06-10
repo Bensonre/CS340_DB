@@ -58,7 +58,7 @@ include('session.php');
 
     // Get the menus that fit query 
     // SEARCH BY INGREDIENT, MENU TITLE, DISH NAME,    
-    $query = "SELECT DISTINCT Dish.DishName, Contains.Dish, Contains.Price, Menu.Title, Menu.Season, Menu.PeriodOfDay, Picture.URL, Dish.Description FROM Menu JOIN Contains ON Menu.Title=Contains.menu JOIN Dish ON Dish.DishName = Contains.Dish NATURAL JOIN Picture WHERE (Contains.menu like '%$userquery%' or Menu.Season like '%$userquery%' or  Contains.Dish like '%$userquery%' or Dish.Description like '%$userquery%') ORDER by Menu.Title DESC";
+    $query = "SELECT DISTINCT Dish.DishName, Contains.Dish, Contains.Price, Menu.Title, Menu.Season, Menu.PeriodOfDay, Picture.URL, Dish.Description FROM Menu JOIN Contains ON Menu.Title=Contains.menu JOIN Dish ON Dish.DishName = Contains.Dish NATURAL JOIN Picture WHERE (Menu.PeriodOfDay like '%userquery%' or Contains.menu like '%$userquery%' or Menu.Season like '%$userquery%' or  Contains.Dish like '%$userquery%' or Dish.Description like '%$userquery%') ORDER by Menu.Title DESC";
     $result = mysqli_query($conn, $query);
 
 		// IF NO RESULTS
