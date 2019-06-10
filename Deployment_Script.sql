@@ -180,7 +180,7 @@ CREATE TABLE `Picture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-NSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
+INSERT INTO `Picture` (`Pid`, `URL`, `Dish`) VALUES
 (101, 'https://i.imgur.com/yzohXCn.jpg', 'Morel and ezekiel salad'),
 (102, 'https://i.imgur.com/s0pjHzu.jpg', 'Martini and strawberry tiramisu'),
 (103, 'https://i.imgur.com/Wt6kO83.jpg', 'Pepper and coconut curry'),
