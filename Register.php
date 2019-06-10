@@ -7,14 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $mypassword = mysqli_real_escape_string($db, $_POST['inputPassword']);
   $verifypassword = mysqli_real_escape_string($db, $_POST['confirmPassword']);
   if ($verifypassword == $mypassword) {
-    echo "<h1>Hello $myuser, $myName, $mypassword</h1>";
     $sql = "INSERT INTO `Customer` (`Cid`, `Email`, `Name`, `Password`) VALUES (NULL, '$myusername', '$myName', MD5('$mypassword'));";
     $result = mysqli_query($db, $sql);
     if (!$result) {
       die("Failed to Insert" );
     }
       $_SESSION['login_user'] = $myusername;
-//      header("location:Home.php");
+      header("location:Home.php");
   } else {
     echo "<h1 class='text-danger'>Error, Password and Confirm Password Must Match</h1>";
   }

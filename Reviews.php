@@ -93,7 +93,7 @@ include('session.php');
 
 		<?php
 			//Populate page with reviews
-  		   $query = "SELECT Review.*, Customer.Name FROM Review, Customer WHERE Review.Cid = Customer.Cid ORDER BY ReviewRating DESC";
+  		   $query = "SELECT Review.*, Customer.Name FROM Review, Customer WHERE Review.Cid = Customer.Cid && Review.ReviewText IS Not Null ORDER BY ReviewRating DESC";
    		$result = mysqli_query($conn, $query);	
 			
 			if (mysqli_num_rows($result) == 0) {
@@ -103,7 +103,7 @@ include('session.php');
 			else{ // make reviews
          	echo ' <div class="col-8">';
 					while ($row = mysqli_fetch_assoc($result)) {
-				   	echo '<card class="card">';
+				   	echo '<card class="card mb-3">';
             		echo '<div class="card-header">';
                	echo '<div class="text-left">';
 						for ( $i = 0; $i < $row['ReviewRating']; $i++){ //
